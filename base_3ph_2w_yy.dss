@@ -1,0 +1,18 @@
+Clear
+New Circuit.Test_YY phases=3 basekv=11 baseMVA=1
+
+! Source
+! Voltage source at 'sourcebus' is created by New Circuit defaults (Vsource.source)
+
+! Transformer: 3-Phase, 2-Winding, Yy
+! Note: Explicitly not grounding neutrals here to let PMD handle/test floating or manual grounding if needed, 
+! but for simple PF we usually need a reference. 
+! Ideally OpenDSS 'wye' implies neutral point. 
+New Transformer.Tx1 phases=3 windings=2 buses=[sourcebus.1.2.3 loadbus.1.2.3] conns=[wye wye] kvs=[11 0.4] kvas=[500 500] xhl=5 %loadloss=1
+
+! Load
+New Load.Ld1 phases=3 bus1=loadbus.1.2.3 kv=0.4 kw=100 pf=0.95 model=1
+
+Set voltagebases=[11 0.4]
+Calcvoltagebases
+Solve
