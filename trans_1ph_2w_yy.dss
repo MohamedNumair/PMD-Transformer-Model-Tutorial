@@ -7,7 +7,9 @@ Set DefaultBaseFrequency=50
 New circuit.ut_trans
 ~ BasekV=11 BaseMVA=1 pu=1.0  ISC3=9999999999 ISC1=9999999999
 
-new xfmrcode.tx phases=1
+
+! Transformers
+New Transformer.TX1 phases=1 Buses=[b1 b2]
 ~ windings=2
 ~ conns=[wye wye]
 ~ kvs=[11 0.4]
@@ -17,22 +19,17 @@ new xfmrcode.tx phases=1
 ~ %imag=11
 ~ wdg=1 %r=1
 ~ wdg=2 %r=2
-
-
-! Transformers
-New Transformer.TX1 Buses=[1 2]
-~ xfmrcode=tx
+! %r = [1 2] ! is also valid syntax
 ~ taps=[1.05 0.95]
 ~ leadlag=lead
 ~ bank=TX1
 
 ! Transmission Lines
-New Line.LINE1 Bus1=SourceBus Bus2=1 phases=1 X1=0.01 R1=0.006
-New Line.LINE2 Bus1=2 Bus2=3 phases=1 X1=0.003 R1=0.006
-BatchEdit Line..* BaseFreq=50
+New Line.LINE1 Bus1=SourceBus Bus2=b1 phases=1 X1=0.01 R1=0.006 basefreq=50.0
+New Line.LINE2 Bus1=b2 Bus2=b3 phases=1 X1=0.003 R1=0.006 basefreq=50.0
 
 ! Loads
-New Load.LOAD1 Phases=1 Bus1=3 kV=4 kW=1 kvar=1
+New Load.LOAD1 Phases=1 Bus1=b3 kV=4 kW=1 kvar=1
 
 ! Set Voltage Bases
 Set voltagebases=[11  0.4]
