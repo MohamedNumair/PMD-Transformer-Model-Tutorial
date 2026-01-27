@@ -1,5 +1,7 @@
 # PMD Transformer Model Tutorial
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/MohamedNumair/PMD-Transformer-Model-Tutorial/blob/main/PMD_Transformer_Tutorial_collab.ipynb)
+
 This repository serves as a comprehensive tutorial for modelling power transformers using `PowerModelsDistribution.jl`. It is designed to help users bridge the gap between intuitive "Engineering" definitions (such as those in OpenDSS) and the "Mathematical" decomposition used for optimization.
 
 The tutorial covers:
