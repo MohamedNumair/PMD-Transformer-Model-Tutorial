@@ -18,8 +18,11 @@ The tutorial covers:
 - 📓 **[View Jupyter Notebook](PMD_Transformer_Tutorial.ipynb)**  
   Access the source notebook to run the Julia code and interact with the vector group simulations locally.
 
+- 💻 **[View Google Colab Notebook](https://colab.research.google.com/github/MohamedNumair/PMD-Transformer-Model-Tutorial/blob/main/PMD_Transformer_Tutorial_collab.ipynb)**  
+  Access the notebook in your browser through Google Colab. [Make sure to change runtime to Julia.](#using-google-colab-to-run-the-tutorial)
 
-## Using google Colab to run the tutorial
+
+## Using Google Colab to run the tutorial
 
 You can run the tutorial directly in your browser using Google Colab. Just click the "Open in Colab" button at the top of this README. However, make sure to change the runtime type to Julia by following these steps:
 
