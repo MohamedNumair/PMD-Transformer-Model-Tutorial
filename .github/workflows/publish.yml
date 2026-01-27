@@ -3,7 +3,7 @@ name: Publish Quarto Output to GitHub Pages
 on:
   push:
     branches:
-      - main  # Adjust if your default branch is 'master'
+      - main 
 
 permissions:
   contents: write
