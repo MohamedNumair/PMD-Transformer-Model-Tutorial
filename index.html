@@ -161,7 +161,7 @@ window.Quarto = {
 </figure>
 </div>
 <p>package_name = “PowerModelsDistribution” eval(Meta.parse(“using $package_name”))elsDistribution.jl ## Getting Started In order to understand how does <code>PowerModelsDistribution.jl</code> model transformers, first we activate a Julia project in the current directory and we define <a href="pmd_xfmr_modelling_helper_funs.jl">some helper functions</a> that we will need later on in this tutorial.</p>
-<div id="ca22683d" class="cell" data-execution_count="902">
+<div id="ca22683d" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Pkg</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">activate</span>(<span class="st">"."</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">instantiate</span>()</span>
@@ -718,6 +718,10 @@ window.Quarto = {
 <li><strong>Group 6 (6, 10, 2):</strong> Obtained by reversing polarity of coils (Swapping ends of windings, e.g., connecting a’ to Neutral instead of n’).</li>
 </ol>
 <p>A list of all reachable vector groups is available in <a href="AppendixA_vector_groups.md">Appendix A</a> <em>Note: Currently PowerModelsDistribution has an issue with Delta winding as a secondary, I am trying to fix it.</em> <em>Note: In OpenDSS/PowerModelsDistribution, defining <code>Buses=[... 3.1.2]</code> performs these cyclic shifts that is simulated by the <code>leadlag</code> parameter in OpenDSS</em></p>
+</section>
+<section id="contribute-and-raise-issues" class="level2">
+<h2 class="anchored" data-anchor-id="contribute-and-raise-issues">Contribute and raise issues</h2>
+<p>While great care was put into validating the correctness of the tutorial content, there may still be mistakes or areas for improvement. If you find any issues or have suggestions, please feel free to raise them in the <a href="https://github.com/MohamedNumair/PMD-Transformer-Model-Tutorial/issues">Issues</a>.</p>
 </section>
 </section>
 
