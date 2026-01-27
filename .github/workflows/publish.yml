@@ -1,0 +1,32 @@
+name: Publish Quarto Output to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Adjust if your default branch is 'master'
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Prepare directory for deployment
+        run: |
+          mkdir _site
+          # Copy the main HTML file to index.html so it loads automatically at the root URL
+          cp PMD_Transformer_Tutorial.html _site/index.html
+          # Also copy the original filename just in case
+          cp PMD_Transformer_Tutorial.html _site/
+          # Copy the supporting files folder (contains figures, libs, css)
+          cp -r PMD_Transformer_Tutorial_files _site/
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
