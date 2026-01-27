@@ -158,7 +158,7 @@ function analyze_vector_group(prim_conn, sec_conn, prim_perm, sec_perm, lead_lag
     v_2 = pf["solution"]["bus"]["2"]["vr"] + 1im * pf["solution"]["bus"]["2"]["vi"]
 
     # 5. Plotting
-    fig = Figure(size=(800, 400))
+    fig = Figure(size=(800, 800))
     ax = PolarAxis(fig[1, 1], title="Interactive Vector Group Phasors", rlimits=(0, 1.1), direction=1, theta_0=pi / 2)
 
     colors_pri = [:red, :green, :blue]
@@ -207,28 +207,49 @@ function analyze_vector_group(prim_conn, sec_conn, prim_perm, sec_perm, lead_lag
 
 
     # Calculate Shift (Phase A)
+
+
     ang_pri_a = rad2deg(angle(v_1[1]))
     ang_sec_a = rad2deg(angle(v_2[1]))
 
 
-    shift = ang_sec_a - ang_pri_a
-    # Normalize shift to -180 to 180
-    if shift > 180
-        shift -= 360
-    end
-    if shift < -180
-        shift += 360
-    end
+    shift = ang_pri_a - ang_sec_a
+                    
+    # Normalize to 0-360
+    while shift < 0; shift += 360; end
+    while shift >= 360; shift -= 360; end
+    clock_float = shift / 30.0
+    clock_int = round(Int, clock_float)
+
+
+
+    # shift = ang_sec_a - ang_pri_a
+    # # Normalize shift to -180 to 180
+    # if shift > 180
+    #     shift -= 360
+    # end
+    # if shift < -180
+    #     shift += 360
+    # end
 
 
     conn_letter = Dict("Delta" => "D", "Wye" => "Y")
     # Print Info
     # Use a hidden text block or display
-    text = "Shift (LV - HV): $(round(shift, digits=1))°\n Clock Notation: $(uppercase(conn_letter[prim_conn]))$(lowercase(conn_letter[sec_conn])) $(Int(round(shift != 0 ? (shift < 0 ? abs(shift)/30 : (360-shift)/30) : 0))) (Approx)"
+    text = "Shift (HV - LV): $(round(shift, digits=1))°\n Clock Notation: $(uppercase(conn_letter[prim_conn]))$(lowercase(conn_letter[sec_conn])) $clock_int"
+    #text = "Shift (LV - HV): $(round(shift, digits=1))°\n Clock Notation: $(uppercase(conn_letter[prim_conn]))$(lowercase(conn_letter[sec_conn])) $(Int(round(shift != 0 ? (shift < 0 ? abs(shift)/30 : (360-shift)/30) : 0))) (Approx)"
     #text2 =   "Shift (LV - HV): $(round(shift, digits=0))°\n  Clock Notation: $(uppercase(conn_letter[prim_conn]))$(lowercase(conn_letter[sec_conn])) $(Int(round(abs.(round(shift, digits=0)) != 0.0 ? (shift < 0 ? (360+shift)/30 : shift/30) : 0))) "
 
+    prim_ang = "Primary (HV) Phase `a` angle: $(round(ang_pri_a, digits=1))°"
+    sec_ang = "Secondary (LV) Phase `a` angle: $(round(ang_sec_a, digits=1))°"
+
+
+
     # We display the text below the plot
-    Label(fig[2, 1], text, fontsize=20, halign=:center, tellwidth=false)
+    Label(fig[2, 1], prim_ang, fontsize=20, halign=:center, tellwidth=false)
+    Label(fig[3, 1], sec_ang, fontsize=20, halign=:center, tellwidth=false)
+
+    Label(fig[4, 1], text, fontsize=20, halign=:center, tellwidth=false)
     #Label(fig[2, 2], text2, fontsize=20, halign=:center, tellwidth=false)
 
     display(fig)
