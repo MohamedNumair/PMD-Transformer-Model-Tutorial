@@ -25,8 +25,6 @@ New Transformer.TX1 phases=3 Buses=[b1.1.2.3 b2.1.2.3.4]
 
 New Reactor.Grounding phases=1 bus1=b2.4 bus2=b2.0 R=0 X=1E-6 // Grounding reactor for wye neutral
 
-New Line.Line2 bus1=b2.1.2.3.4 bus2=b2.1.2.3.4 linecode=Zabcn length=0.5 units=km
-
 New Load.Load1  phases=1 bus1=b2.1.4  kv=0.23  model=1 conn=wye kVA=10  pf=0.9 vminpu=0.1 vmaxpu=2
 Set voltagebases=[11 0.4]
 Calcvoltagebases
