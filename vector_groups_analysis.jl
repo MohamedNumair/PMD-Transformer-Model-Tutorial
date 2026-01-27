@@ -27,7 +27,7 @@ v_2 = pf["solution"]["bus"]["2"]["vr"] + 1im*pf["solution"]["bus"]["2"]["vi"];
 angles_secondary = rad2deg.(angle.(v_2))
 fig = Figure()
 phasor_axis = PolarAxis(fig[1, 1], title = "Voltage Phasors", rlimits = (0, 1.1), 
-    direction = -1, theta_0 = -pi/2)
+    direction = +1, theta_0 = pi/2)
 
 # Helper to format data for polar arrows: base point (0,0) -> tip (angle, radius)
 # Standard arrows! in PolarAxis usually expects (radius, angle) or projected coordinates depending on backend,
