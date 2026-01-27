@@ -106,6 +106,7 @@ function analyze_vector_group(prim_conn, sec_conn, prim_perm, sec_perm, lead_lag
     if sec_conn == "Wye"
         bus2_str = "b2.$b2_nodes.4"
     else
+        error(" Delta secondary not yet supported in this version due to PMD resitrictions")
         bus2_str = "b2.$b2_nodes"
     end
 
@@ -137,12 +138,12 @@ function analyze_vector_group(prim_conn, sec_conn, prim_perm, sec_perm, lead_lag
     math = transform_data_model(eng, kron_reduce=false, phase_project=false)
 
         
-    for (b, bus) in math["bus"]
-        if 5 in bus["terminals"] 
-            display("Bus $b is grounded on neutral.")
-            bus["grounded"][4] = true
-        end
-    end
+    # for (b, bus) in math["bus"]
+    #     if 5 in bus["terminals"] 
+    #         display("Bus $b is grounded on neutral.")
+    #         bus["grounded"][4] = true
+    #     end
+    # end
 
     add_start_vrvi!(math)
     ipopt_solver = optimizer_with_attributes(Ipopt.Optimizer, "print_level" => 0)
@@ -202,7 +203,7 @@ function analyze_vector_group(prim_conn, sec_conn, prim_perm, sec_perm, lead_lag
     Legend(fig[1, 2],
         elements,
         labels,
-        patchsize=(35, 35), rowgap=10)
+        patchsize=(35, 35), rowgap=10, tellwidth=false)
 
 
     # Calculate Shift (Phase A)
@@ -223,10 +224,12 @@ function analyze_vector_group(prim_conn, sec_conn, prim_perm, sec_perm, lead_lag
     conn_letter = Dict("Delta" => "D", "Wye" => "Y")
     # Print Info
     # Use a hidden text block or display
-    text = "Shift (LV - HV): $(round(shift, digits=0))°\n  Clock Notation: $(uppercase(conn_letter[prim_conn]))$(lowercase(conn_letter[sec_conn])) $(Int(round(shift != 0 ? (shift < 0 ? (360+shift)/30 : shift/30) : 0))) "
+    text = "Shift (LV - HV): $(round(shift, digits=1))°\nClock Number: $(Int(round(shift != 0 ? (shift < 0 ? abs(shift)/30 : (360-shift)/30) : 0))) (Approx)"
+    text2 =   "Shift (LV - HV): $(round(shift, digits=0))°\n  Clock Notation: $(uppercase(conn_letter[prim_conn]))$(lowercase(conn_letter[sec_conn])) $(Int(round(abs.(round(shift, digits=0)) != 0.0 ? (shift < 0 ? (360+shift)/30 : shift/30) : 0))) "
 
     # We display the text below the plot
-    Label(fig[2, 1:2], text, fontsize=20, halign=:center, tellwidth=false)
+    Label(fig[2, 1], text, fontsize=20, halign=:center, tellwidth=false)
+    Label(fig[2, 2], text2, fontsize=20, halign=:center, tellwidth=false)
 
     display(fig)
     return fig
