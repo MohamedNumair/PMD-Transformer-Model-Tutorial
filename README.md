@@ -40,3 +40,26 @@ For transformer model implementation details refer to *S. Claeys, G. Deconinck a
 
 ## Contribute and raise issues
 While great care was put into validating the correctness of the tutorial content, there may still be mistakes or areas for improvement. If you find any issues or have suggestions, please feel free to raise them in the [Issues](https://github.com/MohamedNumair/PMD-Transformer-Model-Tutorial/issues).
+
+
+## Acknowledgement
+<img
+src="https://images.squarespace-cdn.com/content/v1/6630d462f8475068fdc6ef20/eb679ecb-0719-4963-acfb-c89eb4dedd5c/Flux50.png"
+  alt="Logo+VLAIO"
+  width="80"
+/>
+<img
+src="https://images.squarespace-cdn.com/content/v1/6630d462f8475068fdc6ef20/89501e45-3c22-4e2c-8425-fe6cc56e1cbf/VLAIO.png"
+  alt="Logo+VLAIO"
+  width="175"
+/>
+<img
+  src="https://github.com/user-attachments/assets/71ea70f1-d0e7-4c23-9f9e-fe3b2c4a1e7d"
+  alt="Logo+Improcap"
+  width="300"
+/>
+
+This work is authored by Mohamed Nuamir part of the strategic research project ([IMPROCAP](https://www.improcap.eu/)), which
+is enabled by the support and funding of VLAIO (Agency for Innovation
+and Entrepreneurship of the Flemish Government) and Flux50 (Grant N°.
+HBC 2022 0733).
